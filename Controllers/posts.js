@@ -36,7 +36,6 @@ const registerUser = async (req, res) => {
     }
 }
 
-
 const loginasDoctor = async (req, res) => {
     try {
         const doctor = await Doctor.findOne({ email: req.body.email });
@@ -114,5 +113,7 @@ const checkAvailability = async (req, res) => {
         console.log(error);
     }
 }
+
+
 
 module.exports = { registerDoctor, registerUser, loginasDoctor, loginasUser, bookPatient, checkAvailability }

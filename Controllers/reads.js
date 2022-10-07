@@ -22,6 +22,17 @@ const readDoctors = async (req, res) => {
         console.log(error);
     }
 }
+const readDoctor = async (req, res) => {
+    try {
+        console.log(req.params.id);
+        const result = await Doctor.findOne({ _id: req.params.id }, { notAvailable: 1 });
+        res.status(200).send(result);
+        // res.send(result);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 const readTokens = async (req, res) => {
 
@@ -67,4 +78,4 @@ const readTokens = async (req, res) => {
 }
 
 
-module.exports = { readPatients, readDoctors, readTokens }
+module.exports = { readPatients, readDoctors, readTokens, readDoctor }

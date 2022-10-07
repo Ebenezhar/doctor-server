@@ -5,6 +5,10 @@ const doctorSchema = new mongoose.Schema({
     secondName: { type: String, required: true },
     email: { type: String, required: true },
     age: { type: Number, required: true },
+    notAvailable: [{
+        notAvailableDate: String,
+        comment: String,
+    }],
     contact: { type: String, required: true },
     gender: { type: String, required: true },
     password: { type: String, required: true },

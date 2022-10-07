@@ -1,4 +1,5 @@
 const AppointmentDet = require("../Schema/AppointmentDet");
+const Doctor = require("../Schema/Doctor");
 var ObjectId = require('mongoose').Types.ObjectId;
 
 const updateAppointmentList = async (req, res) => {
@@ -13,5 +14,12 @@ const updateAppointmentList = async (req, res) => {
     }
 }
 
+const updateAvailability = async (req, res) => {
+    req.body.notAvailableDate = new Date(req.body.notAvailableDate).toDateString();
+    const result = await Doctor.updateOne({ _id: req.params.id }, { $push: { notAvailable: req.body } });
+    console.log(result);
+    res.send({ message: 'updated successfully' })
 
-module.exports = { updateAppointmentList }
+}
+
+module.exports = { updateAppointmentList, updateAvailability }

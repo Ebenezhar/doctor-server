@@ -16,4 +16,4 @@ app.use('/register', registerRoutes);
 app.use('/login', loginRoutes);
 app.use('/portal', portalRoutes);
 
-app.listen(5000 || process.env.PORT)
+app.listen(process.env.PORT || 5000)

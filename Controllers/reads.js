@@ -4,9 +4,11 @@ const User = require("../Schema/User");
 var ObjectId = require('mongoose').Types.ObjectId;
 
 const readPatients = async (req, res) => {
+    console.log(req.params.id);
     const date = new Date().toDateString();
     try {
         const result = await AppointmentDet.find({ doctorId: new ObjectId(req.params.id), appoinmentDate: date, visited: false });
+        console.log(result);
         res.status(200).send(result);
     } catch (error) {
         console.log(error);
@@ -17,14 +19,13 @@ const readPatients = async (req, res) => {
 const readDoctors = async (req, res) => {
     try {
         const result = await Doctor.find();
-        res.send(result);
+        res.status(200).send(result);
     } catch (error) {
         console.log(error);
     }
 }
 const readDoctor = async (req, res) => {
     try {
-        console.log(req.params.id);
         const result = await Doctor.findOne({ _id: req.params.id }, { notAvailable: 1 });
         res.status(200).send(result);
         // res.send(result);
@@ -70,7 +71,6 @@ const readTokens = async (req, res) => {
                 }
             ]);
         res.status(200).send(result);
-        // console.log(result);
 
     } catch (error) {
         console.log(error);
